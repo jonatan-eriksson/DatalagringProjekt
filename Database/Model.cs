@@ -23,8 +23,18 @@ namespace Database
         public string Title { get; set; }
         public string Year { get; set; }
         public string ImageUrl { get; set; }
-        
+        public decimal Price { get; set; }
+
+        public List<Genre> Genres { get; set; }
         public List<Sale> Sales { get; set; }
+        
+    }
+
+    public class Genre
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Movie> Movies { get; set; }
     }
 
     public class Sale
