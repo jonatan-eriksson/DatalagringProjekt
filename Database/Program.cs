@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Linq;
+using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
@@ -9,11 +14,16 @@ namespace Database
         {
             using (var ctx = new Context())
             {
+                
+                // Rensa data i databasen
                 ctx.RemoveRange(ctx.Sales);
                 ctx.RemoveRange(ctx.Movies);
                 ctx.RemoveRange(ctx.Customers);
+                ctx.RemoveRange(ctx.Genres);
 
-                ctx.AddRange(new List<Customer>
+
+                // Customer data
+                ctx.Customers.AddRange(new List<Customer>
                 {
                     new Customer { Username = "Munches", FirstName = "Jack", LastName = "Suhonen"},
                     new Customer { Username = "Sluzy", FirstName = "Andreas", LastName = "Karlsson"},
@@ -45,9 +55,52 @@ namespace Database
                     new Customer { Username = "The Mrs Butters", FirstName = "Inga", LastName = "Bark"},
                     new Customer { Username = "Blood for Mercy", FirstName = "Allan", LastName = "Rasmusson"},
                     new Customer { Username = "Hunter Freemen", FirstName = "Ragnar", LastName = "Öst"},
-
-
+                    new Customer { Username = "Jonatan", FirstName = "Jonatan", LastName = "Eriksson"}
                 });
+
+                // Movie data
+                var fileData = File.ReadAllLines(@"../../../SeedData/MovieGenre.csv");
+                var movies = new List<Movie>();
+                var genres = new Dictionary<string, Genre>();
+                for(int i = 1; i< 10; i++)
+                {
+                    var item = fileData[i].Split(',');
+
+                    // Genre
+                    var movieGenres = new List<Genre>();
+                    foreach (var genre in item[4].Split('|'))
+                    {
+                        if (!genres.ContainsKey(genre))
+                        {
+                            genres.Add(genre, new Genre {Name = genre});
+                        }
+                        movieGenres.Add(genres[genre]);
+                    }
+
+                    // Year
+                    string year = null;
+                    if (item[2].Contains('('))
+                    {
+                        // Plockar ut årtalet från titeln
+                        year = item[2].Split('(', ')')[1];
+                    }
+
+                    // URL
+                    string url = item[5].Trim('"');
+                    try
+                    {
+                        // Försöker skapa en uri
+                        WebRequest request = WebRequest.Create(url);
+                        // Testar om adressen svarar när man kallar på den
+                        request.GetResponse();
+                    }
+                    catch { continue; }
+
+                    movies.Add(new Movie { Title = item[2], Year = year, ImageUrl = url, Price = 0, Genres = movieGenres});
+                }
+                ctx.Movies.AddRange(movies);
+
+                ctx.SaveChanges();
             }
         }
     }

@@ -19,8 +19,13 @@ namespace Database
                     @"Server=.\SQLExpress;" +
                     @"Database=MovieStore;" +
                     @"Trusted_Connection=True;" +
-                    @"MultipleActiveResults=true");
+                    @"MultipleActiveResultSets=true");
         }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Genre>()
+                .HasIndex(g => g.Name)
+                .IsUnique();
+        }
     }
 }
