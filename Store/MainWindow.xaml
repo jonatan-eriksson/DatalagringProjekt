@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <ScrollViewer>
-        <Grid Name="MovieGrid" Background="Black" ShowGridLines="True">
+        <Grid Name="MovieGrid" Background="Black" ShowGridLines="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -26,7 +26,6 @@
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="200"/>
             </Grid.RowDefinitions>
-
         </Grid>
     </ScrollViewer>
 </Window>

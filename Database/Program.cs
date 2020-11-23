@@ -62,7 +62,7 @@ namespace Database
                 var fileData = File.ReadAllLines(@"../../../SeedData/MovieGenre.csv");
                 var movies = new List<Movie>();
                 var genres = new Dictionary<string, Genre>();
-                for(int i = 1; i< 10; i++)
+                for(int i = 1; i< 100; i++)
                 {
                     var item = fileData[i].Split(',');
 
@@ -96,7 +96,7 @@ namespace Database
                     }
                     catch { continue; }
 
-                    movies.Add(new Movie { Title = item[2], Year = year, ImageUrl = url, Price = 0, Genres = movieGenres});
+                    movies.Add(new Movie { Title = item[2].Split('(')[0], Year = year, ImageUrl = url, Price = 0, Genres = movieGenres});
                 }
                 ctx.Movies.AddRange(movies);
 
