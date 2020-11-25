@@ -9,19 +9,23 @@
 
     <Grid Name="MovieGrid" Background="DimGray" ShowGridLines="False">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90"/>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
+            <RowDefinition Height="80"/>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
-        <Label  Grid.Column="2" Grid.Row="2" Name="Title" Content="Home" FontStyle="Oblique" FontSize="60" HorizontalAlignment="Center" />
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
-            <Button Height="50" HorizontalAlignment="Left" Click="GoHome_Click">Hem</Button>
-            <Button Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoMyPage_Click">Min Sida</Button>
-            <Button Height="50" Margin="0,0,0,20" Click="GoStore_Click">Filmer</Button>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button Height="60" Width="100" Background="DimGray" FontSize="40" HorizontalAlignment="Left" Click="GoHome_Click">Hem</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Button Height="60" Width="200" Background="DimGray" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoMyPage_Click">Min Sida</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="3">
+            <Button Height="60" Width="130" Background="DimGray" FontSize="40" HorizontalAlignment="Right" Click="GoStore_Click">Filmer</Button>
         </StackPanel>
         
     </Grid>
