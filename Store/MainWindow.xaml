@@ -21,7 +21,7 @@
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="2">
-            <Button Height="60" Width="200" Background="DimGray" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoMyPage_Click">Min Sida</Button>
+            <Button Height="60" Width="200" Background="DimGray" FontSize="40" HorizontalAlignment="Center" Click="GoMyPage_Click">Min Sida</Button>
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="3">
