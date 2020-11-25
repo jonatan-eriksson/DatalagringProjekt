@@ -6,26 +6,23 @@
         xmlns:local="clr-namespace:Store"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <ScrollViewer>
-        <Grid Name="MovieGrid" Background="Black" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-        </Grid>
-    </ScrollViewer>
+
+    <Grid Name="MovieGrid" Background="DimGray" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label  Grid.Column="2" Grid.Row="2" Name="Title" Content="Home" FontStyle="Oblique" FontSize="60" HorizontalAlignment="Center" />
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10">
+            <Button Height="50" HorizontalAlignment="Left" Click="GoHome_Click">Hem</Button>
+            <Button Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoMyPage_Click">Min Sida</Button>
+            <Button Height="50" Margin="0,0,0,20" Click="GoStore_Click">Filmer</Button>
+        </StackPanel>
+        
+    </Grid>
 </Window>
