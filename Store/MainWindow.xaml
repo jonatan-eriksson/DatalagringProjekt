@@ -8,26 +8,27 @@
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <ScrollViewer>
-        <Grid Name="MovieGrid" Background="Black" ShowGridLines="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-                <RowDefinition Height="200"/>
-            </Grid.RowDefinitions>
-        </Grid>
-    </ScrollViewer>
+
+    <Grid Name="MovieGrid" Background="DimGray" ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Button Height="60" Width="100" Background="DimGray" FontSize="40" HorizontalAlignment="Left" Click="GoHome_Click">Hem</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Button Height="60" Width="200" Background="DimGray" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top" Click="GoMyPage_Click">Min Sida</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="3">
+            <Button Height="60" Width="130" Background="DimGray" FontSize="40" HorizontalAlignment="Right" Click="GoStore_Click">Filmer</Button>
+        </StackPanel>
+        
+    </Grid>
 </mah:MetroWindow>
