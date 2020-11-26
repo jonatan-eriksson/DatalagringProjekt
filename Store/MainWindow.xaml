@@ -10,7 +10,6 @@
         Title="MainWindow" Height="450" Width="800"
         GlowBrush="{DynamicResource MahApps.Brushes.AccentBase}"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:viewModels="clr-namespace:MahAppsMetroHamburgerMenuNavigation.ViewModels"
         WindowTransitionsEnabled="False">
 
     <mah:MetroWindow.Resources>
