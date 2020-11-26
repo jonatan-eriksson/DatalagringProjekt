@@ -16,7 +16,7 @@ namespace Store
     /// <summary>
     /// Interaction logic for MinaFilmer.xaml
     /// </summary>
-    public partial class MinaFilmer : Page
+    public partial class MinaFilmer : UserControl
     {
         public MinaFilmer()
         {

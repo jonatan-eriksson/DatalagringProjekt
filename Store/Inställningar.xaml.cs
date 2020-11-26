@@ -16,7 +16,7 @@ namespace Store
     /// <summary>
     /// Interaction logic for Inställningar.xaml
     /// </summary>
-    public partial class Inställningar : Page
+    public partial class Inställningar : UserControl
     {
         public Inställningar()
         {

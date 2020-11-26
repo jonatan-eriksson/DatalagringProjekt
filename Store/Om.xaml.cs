@@ -16,7 +16,7 @@ namespace Store
     /// <summary>
     /// Interaction logic for Om.xaml
     /// </summary>
-    public partial class Om : Page
+    public partial class Om : UserControl
     {
         public Om()
         {

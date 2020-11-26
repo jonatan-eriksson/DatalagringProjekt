@@ -16,7 +16,7 @@ namespace Store
     /// <summary>
     /// Interaction logic for Konto.xaml
     /// </summary>
-    public partial class Konto : Page
+    public partial class Konto : UserControl
     {
         public Konto()
         {

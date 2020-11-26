@@ -16,7 +16,7 @@ namespace Store
     /// <summary>
     /// Interaction logic for Filmer.xaml
     /// </summary>
-    public partial class Filmer : Page
+    public partial class Filmer : UserControl
     {
         public Filmer()
         {
