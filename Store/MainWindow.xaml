@@ -7,28 +7,130 @@
         xmlns:local="clr-namespace:Store"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        GlowBrush="{DynamicResource MahApps.Brushes.AccentBase}"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:viewModels="clr-namespace:MahAppsMetroHamburgerMenuNavigation.ViewModels"
+        WindowTransitionsEnabled="False">
 
-    <Grid Name="MovieGrid" Background="DimGray" ShowGridLines="False">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition ></RowDefinition>
-        </Grid.RowDefinitions>
+    <mah:MetroWindow.Resources>
+        <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type mah:HamburgerMenuIconItem}">
+            <Grid Height="48">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength, Mode=OneWay}" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{Binding Icon}"
+                                Focusable="False" />
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Text="{Binding Label}" />
+            </Grid>
+        </DataTemplate>
+    </mah:MetroWindow.Resources>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <Button Height="60" Width="100" Background="DimGray" FontSize="40" HorizontalAlignment="Left" Click="GoHome_Click">Hem</Button>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="0" Grid.Column="2">
-            <Button Height="60" Width="200" Background="DimGray" FontSize="40" HorizontalAlignment="Center" Click="GoMyPage_Click">Min Sida</Button>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="0" Grid.Column="3">
-            <Button Height="60" Width="130" Background="DimGray" FontSize="40" HorizontalAlignment="Right" Click="GoStore_Click">Filmer</Button>
-        </StackPanel>
-        
-    </Grid>
+    <mah:HamburgerMenu x:Name="HamburgerMenuControl"
+                       DisplayMode="CompactInline"
+                       IsPaneOpen="False"
+                       ItemTemplate="{StaticResource MenuItemTemplate}"
+                       OptionsItemTemplate="{StaticResource MenuItemTemplate}">
+        ... fortsättning
+        <!--  Header  -->
+        <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+            <DataTemplate>
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Foreground="White"
+                           Text="Meny" />
+            </DataTemplate>
+        </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+
+        <!-- Content området -->
+        <mah:HamburgerMenu.ContentTemplate>
+            <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+                <Grid Name="ContentGrid">
+                    <ContentControl
+                        Content="{Binding Tag, Mode=OneWay}"
+                        Focusable="False"
+                        Foreground="Black"/>
+                </Grid>
+            </DataTemplate>
+        </mah:HamburgerMenu.ContentTemplate>
+        <!--  Items  -->
+        <!-- Knapparna i mitten -->
+        <mah:HamburgerMenu.ItemsSource>
+            <mah:HamburgerMenuItemCollection>
+
+                <mah:HamburgerMenuIconItem Label="Filmer">
+                    <!-- Text 1-->
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularMovie" />
+                        <!-- Ikon 1 -->
+                    </mah:HamburgerMenuIconItem.Icon>
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <TextBlock>Filmer</TextBlock>
+                        <!-- Text 1 -->
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+                <mah:HamburgerMenuIconItem Label="Konto">
+                    <!-- Text 2-->
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularUser" />
+                        <!-- Ikon 2 -->
+                    </mah:HamburgerMenuIconItem.Icon>
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <TextBlock>Konto</TextBlock>
+                        <!-- Text 2-->
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+                <mah:HamburgerMenuIconItem Label="Mina Filmer">
+                    <!-- Text 3-->
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularFolder" />
+                        <!-- Ikon 3 -->
+                    </mah:HamburgerMenuIconItem.Icon>
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <TextBlock>Mina Filmer</TextBlock>
+                        <!-- Text 3-->
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+            </mah:HamburgerMenuItemCollection>
+        </mah:HamburgerMenu.ItemsSource>
+
+        <!--  Options -->
+        <!-- Knappen längst ner -->
+        <mah:HamburgerMenu.OptionsItemsSource>
+            <mah:HamburgerMenuItemCollection>
+                <!-- Ikon 1 -->
+                <mah:HamburgerMenuIconItem Label="Om">
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularQuestionMark"/>
+                    </mah:HamburgerMenuIconItem.Icon>
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <TextBlock>Om</TextBlock>
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+                <!-- Ikon 2 -->
+                <mah:HamburgerMenuIconItem Label="Inställningar">
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularCog"/>
+                    </mah:HamburgerMenuIconItem.Icon>
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <TextBlock>Inställningar</TextBlock>
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+            </mah:HamburgerMenuItemCollection>
+        </mah:HamburgerMenu.OptionsItemsSource>
+    </mah:HamburgerMenu>
+
 </mah:MetroWindow>

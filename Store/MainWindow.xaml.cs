@@ -22,10 +22,23 @@ namespace Store
     /// </summary>
     public partial class MainWindow : MetroWindow //Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-           
+          
         }
+        private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
+        {
+            this.HamburgerMenuControl.Content = e.InvokedItem;
+
+            if (!e.IsItemOptions && this.HamburgerMenuControl.IsPaneOpen)
+            {
+                // close the menu if a item was selected
+                // this.HamburgerMenuControl.IsPaneOpen = false;
+            }
+        }
+
     }
 }
+
