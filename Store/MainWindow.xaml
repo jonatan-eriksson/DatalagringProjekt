@@ -10,7 +10,8 @@
         Title="MainWindow" Height="450" Width="800"
         GlowBrush="{DynamicResource MahApps.Brushes.AccentBase}"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        WindowTransitionsEnabled="False">
+        WindowTransitionsEnabled="False"
+        xmlns:sub="clr-namespace:Store">
 
     <mah:MetroWindow.Resources>
         <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type mah:HamburgerMenuIconItem}">
@@ -110,26 +111,42 @@
             <mah:HamburgerMenuItemCollection>
                 <!-- Ikon 1 -->
                 <mah:HamburgerMenuIconItem Label="Om">
+                    
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularQuestionMark"/>
                     </mah:HamburgerMenuIconItem.Icon>
+                    
                     <mah:HamburgerMenuIconItem.Tag>
                         <TextBlock>Om</TextBlock>
                     </mah:HamburgerMenuIconItem.Tag>
+                    
                 </mah:HamburgerMenuIconItem>
 
                 <!-- Ikon 2 -->
                 <mah:HamburgerMenuIconItem Label="Inställningar">
+                    
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularCog"/>
                     </mah:HamburgerMenuIconItem.Icon>
+                    
                     <mah:HamburgerMenuIconItem.Tag>
                         <TextBlock>Inställningar</TextBlock>
                     </mah:HamburgerMenuIconItem.Tag>
+                    
                 </mah:HamburgerMenuIconItem>
 
             </mah:HamburgerMenuItemCollection>
         </mah:HamburgerMenu.OptionsItemsSource>
     </mah:HamburgerMenu>
+    
+    <!-- vrf funkar det inte?!?!? :( -->
 
+    <Grid Grid.Row="1" Grid.Column="1">
+        <sub:Filmer x:Name="Filmer" Visibility="Hidden"></sub:Filmer>
+        <sub:Konto x:Name="Konto" Visibility="Hidden"></sub:Konto>
+        <sub:MinaFilmer x:Name="Mina Filmer" Visibility="Hidden"></sub:MinaFilmer>
+        <sub:Om x:Name="Om" Visibility="Hidden"></sub:Om>
+        <sub:Inställningar x:Name="Inställningar" Visibility="Hidden"></sub:Inställningar>
+    </Grid>
+    
 </mah:MetroWindow>
