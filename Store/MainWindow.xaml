@@ -11,7 +11,8 @@
         GlowBrush="{DynamicResource MahApps.Brushes.AccentBase}"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         WindowTransitionsEnabled="False"
-        xmlns:sub="clr-namespace:Store">
+        xmlns:sub="clr-namespace:Store"
+        xmlns:views="clr-namespace:Store.Views">
 
     <mah:MetroWindow.Resources>
         <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type mah:HamburgerMenuIconItem}">
@@ -36,9 +37,9 @@
     <mah:HamburgerMenu x:Name="HamburgerMenuControl"
                        DisplayMode="CompactInline"
                        IsPaneOpen="False"
+                       ItemInvoked="HamburgerMenuControl_OnItemInvoked"
                        ItemTemplate="{StaticResource MenuItemTemplate}"
                        OptionsItemTemplate="{StaticResource MenuItemTemplate}">
-        ... fortsättning
         <!--  Header  -->
         <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
             <DataTemplate>
@@ -52,53 +53,51 @@
 
         <!-- Content området -->
         <mah:HamburgerMenu.ContentTemplate>
-            <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+            <DataTemplate DataType="{x:Type mah:HamburgerMenuItem}">
                 <Grid Name="ContentGrid">
                     <ContentControl
+                        x:Name="Content"
                         Content="{Binding Tag, Mode=OneWay}"
                         Focusable="False"
                         Foreground="Black"/>
                 </Grid>
             </DataTemplate>
         </mah:HamburgerMenu.ContentTemplate>
+
         <!--  Items  -->
-        <!-- Knapparna i mitten -->
+        <!-- Mitten -->
         <mah:HamburgerMenu.ItemsSource>
             <mah:HamburgerMenuItemCollection>
-
+                <!-- Ikon 1 -->
                 <mah:HamburgerMenuIconItem Label="Filmer">
-                    <!-- Text 1-->
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularMovie" />
-                        <!-- Ikon 1 -->
                     </mah:HamburgerMenuIconItem.Icon>
+                    
                     <mah:HamburgerMenuIconItem.Tag>
-                        <TextBlock>Filmer</TextBlock>
-                        <!-- Text 1 -->
+                        <views:MovieView></views:MovieView>
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
-                <mah:HamburgerMenuIconItem Label="Konto">
-                    <!-- Text 2-->
-                    <mah:HamburgerMenuIconItem.Icon>
-                        <iconPacks:BoxIcons Kind="RegularUser" />
-                        <!-- Ikon 2 -->
-                    </mah:HamburgerMenuIconItem.Icon>
-                    <mah:HamburgerMenuIconItem.Tag>
-                        <TextBlock>Konto</TextBlock>
-                        <!-- Text 2-->
-                    </mah:HamburgerMenuIconItem.Tag>
-                </mah:HamburgerMenuIconItem>
-
+                <!-- Ikon 3 -->
                 <mah:HamburgerMenuIconItem Label="Mina Filmer">
-                    <!-- Text 3-->
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularFolder" />
-                        <!-- Ikon 3 -->
                     </mah:HamburgerMenuIconItem.Icon>
+
                     <mah:HamburgerMenuIconItem.Tag>
-                        <TextBlock>Mina Filmer</TextBlock>
-                        <!-- Text 3-->
+                        <views:UserMoviesView></views:UserMoviesView>
+                    </mah:HamburgerMenuIconItem.Tag>
+                </mah:HamburgerMenuIconItem>
+
+                <!-- Ikon 2 -->
+                <mah:HamburgerMenuIconItem Label="Konto">
+                    <mah:HamburgerMenuIconItem.Icon>
+                        <iconPacks:BoxIcons Kind="RegularUser" />
+                    </mah:HamburgerMenuIconItem.Icon>
+
+                    <mah:HamburgerMenuIconItem.Tag>
+                        <views:UserView></views:UserView>
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
@@ -106,47 +105,33 @@
         </mah:HamburgerMenu.ItemsSource>
 
         <!--  Options -->
-        <!-- Knappen längst ner -->
+        <!-- Längst ner -->
         <mah:HamburgerMenu.OptionsItemsSource>
             <mah:HamburgerMenuItemCollection>
                 <!-- Ikon 1 -->
                 <mah:HamburgerMenuIconItem Label="Om">
-                    
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularQuestionMark"/>
                     </mah:HamburgerMenuIconItem.Icon>
                     
                     <mah:HamburgerMenuIconItem.Tag>
-                        <TextBlock>Om</TextBlock>
+                        <views:AboutView></views:AboutView>
                     </mah:HamburgerMenuIconItem.Tag>
-                    
                 </mah:HamburgerMenuIconItem>
 
                 <!-- Ikon 2 -->
                 <mah:HamburgerMenuIconItem Label="Inställningar">
-                    
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularCog"/>
                     </mah:HamburgerMenuIconItem.Icon>
-                    
+
                     <mah:HamburgerMenuIconItem.Tag>
-                        <TextBlock>Inställningar</TextBlock>
+                        <views:SettingsView></views:SettingsView>
                     </mah:HamburgerMenuIconItem.Tag>
-                    
                 </mah:HamburgerMenuIconItem>
 
             </mah:HamburgerMenuItemCollection>
         </mah:HamburgerMenu.OptionsItemsSource>
     </mah:HamburgerMenu>
-    
-    <!-- vrf funkar det inte?!?!? :( -->
-
-    <Grid Grid.Row="1" Grid.Column="1">
-        <sub:Filmer x:Name="Filmer" Visibility="Hidden"></sub:Filmer>
-        <sub:Konto x:Name="Konto" Visibility="Hidden"></sub:Konto>
-        <sub:MinaFilmer x:Name="Mina Filmer" Visibility="Hidden"></sub:MinaFilmer>
-        <sub:Om x:Name="Om" Visibility="Hidden"></sub:Om>
-        <sub:Inställningar x:Name="Inställningar" Visibility="Hidden"></sub:Inställningar>
-    </Grid>
-    
+  
 </mah:MetroWindow>

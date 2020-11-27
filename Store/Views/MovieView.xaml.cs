@@ -10,15 +10,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Database;
 
-namespace Store
+
+namespace Store.Views
 {
     /// <summary>
-    /// Interaction logic for MinaFilmer.xaml
+    /// Interaction logic for MovieView.xaml
     /// </summary>
-    public partial class MinaFilmer : UserControl
+    public partial class MovieView : UserControl
     {
-        public MinaFilmer()
+        public MovieView()
         {
             InitializeComponent();
         }

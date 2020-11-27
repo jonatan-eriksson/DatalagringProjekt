@@ -36,60 +36,10 @@ namespace Store
             if (!e.IsItemOptions && this.HamburgerMenuControl.IsPaneOpen)
             {
                 // close the menu if a item was selected
-                // this.HamburgerMenuControl.IsPaneOpen = false;
+                this.HamburgerMenuControl.Content = e.InvokedItem;
+                this.HamburgerMenuControl.IsPaneOpen = false;
             }
-
-            
         }
-        private void GoFilmer_Click(object sender, RoutedEventArgs e)
-        {
-            Title.Content = "Filmer";
-            Filmer.Visibility = Visibility.Visible;
-            Konto.Visibility = Visibility.Hidden;
-            MinaFilmer.Visibility = Visibility.Hidden;
-            Om.Visibility = Visibility.Hidden;
-            Inställningar.Visibility = Visibility.Hidden;
-        }
-
-        private void GoKonto_Click(object sender, RoutedEventArgs e)
-        {
-            Title.Content = "Konto";
-            Filmer.Visibility = Visibility.Hidden;
-            Konto.Visibility = Visibility.Visible;
-            MinaFilmer.Visibility = Visibility.Hidden;
-            Om.Visibility = Visibility.Hidden;
-            Inställningar.Visibility = Visibility.Hidden;
-        }
-
-        private void GoMinaFilmer_Click(object sender, RoutedEventArgs e)
-        {
-            Title.Content = "Mina Filmer";
-            Filmer.Visibility = Visibility.Hidden;
-            Konto.Visibility = Visibility.Hidden;
-            MinaFilmer.Visibility = Visibility.Visible;
-            Om.Visibility = Visibility.Hidden;
-            Inställningar.Visibility = Visibility.Hidden;
-        }
-        private void GoOm_Click(object sender, RoutedEventArgs e)
-        {
-            Title.Content = "Om";
-            Filmer.Visibility = Visibility.Hidden;
-            Konto.Visibility = Visibility.Hidden;
-            MinaFilmer.Visibility = Visibility.Hidden;
-            Om.Visibility = Visibility.Visible;
-            Inställningar.Visibility = Visibility.Hidden;
-        }
-        private void GoInställningar_Click(object sender, RoutedEventArgs e)
-        {
-            Title.Content = "Store";
-            Filmer.Visibility = Visibility.Visible;
-            Konto.Visibility = Visibility.Hidden;
-            MinaFilmer.Visibility = Visibility.Hidden;
-            Om.Visibility = Visibility.Hidden;
-            Inställningar.Visibility = Visibility.Visible;
-        }
-        
-
     }
 }
 

@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Store
+namespace Store.Views
 {
     /// <summary>
-    /// Interaction logic for Inställningar.xaml
+    /// Interaction logic for UserMoviesView.xaml
     /// </summary>
-    public partial class Inställningar : UserControl
+    public partial class UserMoviesView : UserControl
     {
-        public Inställningar()
+        public UserMoviesView()
         {
             InitializeComponent();
         }

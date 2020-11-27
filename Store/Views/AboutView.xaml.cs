@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Store
+namespace Store.Views
 {
     /// <summary>
-    /// Interaction logic for Konto.xaml
+    /// Interaction logic for AboutView.xaml
     /// </summary>
-    public partial class Konto : UserControl
+    public partial class AboutView : UserControl
     {
-        public Konto()
+        public AboutView()
         {
             InitializeComponent();
         }

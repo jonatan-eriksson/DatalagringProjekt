@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Store
+namespace Store.Views
 {
     /// <summary>
-    /// Interaction logic for Om.xaml
+    /// Interaction logic for SettingsView.xaml
     /// </summary>
-    public partial class Om : UserControl
+    public partial class SettingsView : UserControl
     {
-        public Om()
+        public SettingsView()
         {
             InitializeComponent();
         }

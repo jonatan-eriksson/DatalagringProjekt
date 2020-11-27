@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Store
+namespace Store.Views
 {
     /// <summary>
-    /// Interaction logic for Filmer.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    public partial class Filmer : UserControl
+    public partial class UserView : UserControl
     {
-        public Filmer()
+        public UserView()
         {
             InitializeComponent();
         }
