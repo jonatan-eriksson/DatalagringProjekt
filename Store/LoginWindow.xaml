@@ -1,23 +1,88 @@
-﻿<Window x:Class="Store.LoginWindow"
+﻿<mah:MetroWindow x:Class="Store.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Store"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="LoginWindow" Height="350" Width="400"
+        ResizeMode="NoResize" WindowStyle="None"
+        ShowTitleBar="False" GlowBrush="Transparent" ShowCloseButton="True">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightGray">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-                <Label Content="Username:" Margin="0 0 0 2" VerticalAlignment="Center"></Label>
+        <Border CornerRadius="0" Background="#fffaff"/>
+
+        <StackPanel Margin="50 0">
             
-                <TextBox Name="NameBox" Width="120" Padding="2" VerticalAlignment="Center"></TextBox>
+            <!--Header-->
+            <StackPanel Margin="0 48 0 0">
+                <Label FontWeight="Bold" FontSize="30" Foreground="#303036" HorizontalAlignment="Center" Content="LOGIN"/>
+                <!--<Separator Background="{DynamicResource MahApps.Brushes.AccentBase}"/>-->
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10">
-                <Button Click="Login_Click" Content="Login" VerticalAlignment="Center" Width="50" Margin="0 0 10 0"></Button>
-                <Button Click="Quit_Click" Content="Quit" VerticalAlignment="Center" Width="50" Margin="10 0 0 0"></Button>
+
+            <!--Input-->
+            <StackPanel Margin="0 20">
+                <!--Användarnamn-->
+                <StackPanel Margin="0 10">
+                    <DockPanel>
+                        <iconPacks:PackIconBoxIcons Kind="SolidUser" Foreground="#303036" VerticalAlignment="Center" />
+                        
+                        <TextBox Name="NameBox"
+                                 Padding="5" 
+                                 BorderThickness="0" 
+                                 BorderBrush="Transparent" 
+                                 Background="Transparent" 
+                                 Foreground="#303036"
+                                 mah:TextBoxHelper.Watermark="Användarnamn"
+                                 mah:TextBoxHelper.ClearTextButton="True"/>
+                    </DockPanel>
+                    <Separator/>
+                </StackPanel>
+
+                <!--Lösenord-->
+                <StackPanel Margin="0 10">
+                    <DockPanel>
+                        <iconPacks:PackIconBoxIcons Kind="SolidLock" Foreground="#303036" VerticalAlignment="Center" />
+
+                        <PasswordBox Name="PasswordBox"
+                                     Padding="5" 
+                                     BorderThickness="0" 
+                                     BorderBrush="Transparent" 
+                                     Background="Transparent" 
+                                     Foreground="#303036" 
+                                     mah:TextBoxHelper.Watermark="Lösenord" 
+                                     mah:TextBoxHelper.ClearTextButton="True" 
+                                     Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}"/>
+                    </DockPanel>
+                    <Separator/>
+                </StackPanel>
+            </StackPanel>
+
+            <!--Buttons-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+                <Button Name="LoginButton"
+                        Padding="8" 
+                        Focusable="False" 
+                        Background="{DynamicResource MahApps.Brushes.AccentBase}" 
+                        Foreground="#fffaff"
+                        Width="100" 
+                        Margin="10 0" 
+                        Content="Logga in"
+                        IsDefault="True"
+                        Click="LoginButton_OnClick"/>
+
+                <Button Name="ExitButton"
+                        Padding="8" 
+                        Focusable="False" 
+                        Background="#303036" 
+                        Foreground="#fffaff" 
+                        Width="100" 
+                        Margin="10 0" 
+                        Content="Exit"
+                        Click="ExitButton_OnClick"/>
             </StackPanel>
         </StackPanel>
-
     </Grid>
-</Window>
+</mah:MetroWindow>

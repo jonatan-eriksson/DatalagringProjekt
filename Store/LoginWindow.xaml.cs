@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Database;
+using MahApps.Metro.Controls;
 
 
 namespace Store
@@ -18,21 +19,23 @@ namespace Store
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : MetroWindow //Window
     {
         public LoginWindow()
         {
             InitializeComponent();
-        }
-
-        private void Quit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            NameBox.Focus();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void LoginButton_OnClick(object sender, RoutedEventArgs e)
+        {
             State.User = API.GetCustomerByName(NameBox.Text);
+
             if (State.User != null)
             {
                 var mainWindow = new MainWindow();
@@ -43,6 +46,11 @@ namespace Store
             {
                 NameBox.Text = "";
             }
+        }
+
+        private void ExitButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
