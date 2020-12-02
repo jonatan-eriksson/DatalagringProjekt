@@ -37,7 +37,7 @@
         
         <!--Save Button-->
         
-        <Button Content="spara" Click="Button_Click" VerticalAlignment="Center" Grid.Row="2" Width="150"/>
+        <Button Content="spara" Click="Button_Click" VerticalAlignment="Center" Grid.Row="2" Width="150" Background="Gray"/>
         
     </Grid>
 

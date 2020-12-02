@@ -164,5 +164,19 @@ namespace Database
             }
         
         }
+
+        public static UpdateCustomer()
+        {
+            using var ctx = new Context();
+            
+            try
+            {
+                ctx.Update(Customer)
+
+              return ctx.SaveChanges()
+            }
+
+        } 
+             
     }
 }

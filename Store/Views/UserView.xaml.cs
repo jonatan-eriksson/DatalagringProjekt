@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Database;
 
 namespace Store.Views
 {
@@ -25,7 +26,23 @@ namespace Store.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
+            
         }
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            if (State.User != null)
+            {
+                State.User.FirstName = FörNamn.Text;
+                State.User.LastName = EfterNamn.Text;
+                
+            }
+
+
+
+        }
+
+        
     }
 }
