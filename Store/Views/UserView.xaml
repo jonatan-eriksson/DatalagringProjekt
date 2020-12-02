@@ -7,6 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label HorizontalAlignment="Center" FontSize="30">Konto</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="145*" />
+        </Grid.RowDefinitions>
+        <Label HorizontalAlignment="Center" FontSize="30" Grid.Column="1" Width="88">Konto</Label>
+        <StackPanel Margin="58,10,59,10" Grid.Row="1" Width="150" HorizontalAlignment="Left">
+            <TextBlock>
+                Förnamn:
+            </TextBlock>
+            <TextBox/>
+        </StackPanel>
+        <StackPanel Margin="58,10,59,10" Grid.Row="2" Width="150" HorizontalAlignment="Left">
+            <TextBlock>
+                Efternamn:
+            </TextBlock>
+            <TextBox/>
+        </StackPanel>
     </Grid>
+
 </UserControl>
