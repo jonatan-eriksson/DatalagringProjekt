@@ -23,9 +23,11 @@ namespace Database
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Customer>()
+                .HasIndex(c => c.Username).IsUnique();
+            
             modelBuilder.Entity<Genre>()
-                .HasIndex(g => g.Name)
-                .IsUnique();
+                .HasIndex(g => g.Name).IsUnique();
         }
     }
 }
