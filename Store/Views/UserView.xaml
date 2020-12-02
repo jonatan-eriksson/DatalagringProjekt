@@ -12,19 +12,33 @@
             <RowDefinition Height="34*" />
             <RowDefinition Height="145*" />
         </Grid.RowDefinitions>
+
+        <!--Header-->
+
         <Label HorizontalAlignment="Center" FontSize="30" Grid.Column="1" Width="88">Konto</Label>
+
+        <!--Firstname-->
+
         <StackPanel Margin="58,10,59,10" Grid.Row="1" Width="150" HorizontalAlignment="Left">
             <TextBlock>
                 Förnamn:
             </TextBlock>
-            <TextBox/>
+            <TextBox Name="FörNamn"/>
         </StackPanel>
+        
+        <!--Lastname-->
+        
         <StackPanel Margin="58,10,59,10" Grid.Row="2" Width="150" HorizontalAlignment="Left">
             <TextBlock>
                 Efternamn:
             </TextBlock>
-            <TextBox/>
+            <TextBox Name="EfterNamn"/>
         </StackPanel>
+        
+        <!--Save Button-->
+        
+        <Button Content="spara" Click="Button_Click" VerticalAlignment="Center" Grid.Row="2" Width="150"/>
+        
     </Grid>
 
 </UserControl>
