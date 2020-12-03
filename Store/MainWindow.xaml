@@ -108,18 +108,8 @@
         <!-- Längst ner -->
         <mah:HamburgerMenu.OptionsItemsSource>
             <mah:HamburgerMenuItemCollection>
-                <!-- Ikon 1 -->
-                <mah:HamburgerMenuIconItem Label="Om">
-                    <mah:HamburgerMenuIconItem.Icon>
-                        <iconPacks:BoxIcons Kind="RegularQuestionMark"/>
-                    </mah:HamburgerMenuIconItem.Icon>
-                    
-                    <mah:HamburgerMenuIconItem.Tag>
-                        <views:AboutView></views:AboutView>
-                    </mah:HamburgerMenuIconItem.Tag>
-                </mah:HamburgerMenuIconItem>
 
-                <!-- Ikon 2 -->
+                <!-- Ikon 1 -->
                 <mah:HamburgerMenuIconItem Label="Inställningar">
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularCog"/>

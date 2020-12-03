@@ -169,13 +169,10 @@ namespace Database
         {
             using var ctx = new Context();
             
-            try
-            {
-                ctx.Update(Customer)
+                ctx.Update(Customer.Customer);
 
-              return ctx.SaveChanges()
-            }
-
+                ctx.SaveChanges();
+            
         } 
              
     }
