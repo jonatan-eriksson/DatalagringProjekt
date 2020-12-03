@@ -79,7 +79,7 @@
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
-                <!-- Ikon 3 -->
+                <!-- Ikon 2 -->
                 <mah:HamburgerMenuIconItem Label="Mina Filmer">
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularFolder" />
@@ -90,7 +90,7 @@
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
-                <!-- Ikon 2 -->
+                <!-- Ikon 3 -->
                 <mah:HamburgerMenuIconItem Label="Konto">
                     <mah:HamburgerMenuIconItem.Icon>
                         <iconPacks:BoxIcons Kind="RegularUser" />
@@ -104,24 +104,6 @@
             </mah:HamburgerMenuItemCollection>
         </mah:HamburgerMenu.ItemsSource>
 
-        <!--  Options -->
-        <!-- Längst ner -->
-        <mah:HamburgerMenu.OptionsItemsSource>
-            <mah:HamburgerMenuItemCollection>
-
-                <!-- Ikon 1 -->
-                <mah:HamburgerMenuIconItem Label="Inställningar">
-                    <mah:HamburgerMenuIconItem.Icon>
-                        <iconPacks:BoxIcons Kind="RegularCog"/>
-                    </mah:HamburgerMenuIconItem.Icon>
-
-                    <mah:HamburgerMenuIconItem.Tag>
-                        <views:SettingsView></views:SettingsView>
-                    </mah:HamburgerMenuIconItem.Tag>
-                </mah:HamburgerMenuIconItem>
-
-            </mah:HamburgerMenuItemCollection>
-        </mah:HamburgerMenu.OptionsItemsSource>
     </mah:HamburgerMenu>
   
 </mah:MetroWindow>
