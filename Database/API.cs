@@ -165,17 +165,15 @@ namespace Database
         
         }
 
-        public static UpdateCustomer()
+        //Update customer firstname and lastname
+        public static int UpdateCustomer(Customer Customer)
         {
             using var ctx = new Context();
-            
-            try
-            {
-                ctx.Update(Customer)
+                        
+                ctx.Update(Customer);
 
-              return ctx.SaveChanges()
-            }
-
+                return ctx.SaveChanges();
+                        
         } 
              
     }
