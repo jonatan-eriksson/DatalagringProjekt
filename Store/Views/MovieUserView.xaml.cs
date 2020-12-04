@@ -10,17 +10,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Database;
 
 namespace Store.Views
 {
     /// <summary>
     /// Interaction logic for UserMoviesView.xaml
     /// </summary>
-    public partial class UserMoviesView : UserControl
+    public partial class MovieUserView : UserControl
     {
-        public UserMoviesView()
+        public MovieUserView()
         {
             InitializeComponent();
+            State.User = API.GetCustomerByUsername("demo");
+            //State.Movies = API.GetCustomerMovies(State.User);
+            //icMovieList.ItemsSource = State.Movies;
         }
     }
 }
