@@ -34,7 +34,7 @@ namespace Store
 
         private void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
-            State.User = API.GetCustomerByName(NameBox.Text);
+            State.User = API.GetCustomerByUsername(NameBox.Text);
 
             if (State.User != null)
             {

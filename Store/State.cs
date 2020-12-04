@@ -5,7 +5,7 @@ using Database;
 
 namespace Store
 {
-    class State
+    public class State
     {
         public static Customer User { get; set; }
         public static List<Movie> Movies { get; set; }

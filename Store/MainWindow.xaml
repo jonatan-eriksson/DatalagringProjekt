@@ -75,7 +75,7 @@
                     </mah:HamburgerMenuIconItem.Icon>
                     
                     <mah:HamburgerMenuIconItem.Tag>
-                        <views:MovieView></views:MovieView>
+                        <views:MovieGridView/>
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
@@ -86,7 +86,7 @@
                     </mah:HamburgerMenuIconItem.Icon>
 
                     <mah:HamburgerMenuIconItem.Tag>
-                        <views:UserMoviesView></views:UserMoviesView>
+                        <views:MovieUserView/>
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 
@@ -97,7 +97,7 @@
                     </mah:HamburgerMenuIconItem.Icon>
 
                     <mah:HamburgerMenuIconItem.Tag>
-                        <views:UserView></views:UserView>
+                        <views:UserView/>
                     </mah:HamburgerMenuIconItem.Tag>
                 </mah:HamburgerMenuIconItem>
 

@@ -68,8 +68,6 @@ namespace Store.Views
 
         private void CMovieBar_OnComboBoxSelectionChanged(object sender, MovieBar.ComboBoxSelectionChangedEventArgs e)
         {
-
-            MessageBox.Show(e.GetType().ToString());
             if (e.SortItem is MovieBar.CbItem)
             {
                 var selected = (MovieBar.CbItem)e.SortItem;
