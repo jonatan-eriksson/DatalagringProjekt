@@ -14,76 +14,130 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Database;
 using Store.Controls;
-using Store.Models;
 using Store.ViewModels;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.Specialized;
 
 namespace Store.Views
 {
     /// <summary>
     /// Interaction logic for MovieGridView.xaml
     /// </summary>
-    public partial class MovieGridView : UserControl
+    public partial class MovieGridView : UserControl, INotifyPropertyChanged
     {
-        public List<MovieBar.CbItem> CbSortItems { get; set; } = new List<MovieBar.CbItem>();
-        public List<Genre> CbGenreItems { get; } = new List<Genre>(API.GetGenres().OrderBy(g => g.Name));
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         
-        //public List<Movie> MovieList { get; set; } = new List<Movie>();
-        public List<Movie> MovieList { get; set; }
-
+        private ObservableCollection<Movie> _movieList;
+        public ObservableCollection<Movie> MovieList { get { return _movieList; } set { _movieList = value; NotifyPropertyChanged(); } }
+        
+        public List<MovieBar.CbItem> CbSortItems { get; set; }
+        public List<Genre> CbGenreItems { get; set; }
 
         public MovieGridView()
         {
-            State.Movies = API.GetMovieSlice(0, 100);
-            //MovieList = API.GetMovieSlice(0, 100);
+            MovieList = new ObservableCollection<Movie>(State.Movies);
+   
+            CbSortItems = new List<MovieBar.CbItem>() {
+                new MovieBar.CbItem() { Id=0, Name="A-Ö" },
+                new MovieBar.CbItem() { Id=1, Name="Ö-A" },
+                new MovieBar.CbItem() { Id=2, Name="Årtal" },
+                new MovieBar.CbItem() { Id=3, Name="Högst betyg" },
+                new MovieBar.CbItem() { Id=4, Name="Lägst betyg" }
+            };
+
+            CbGenreItems = new List<Genre>(API.GetGenres().OrderBy(g => g.Name));
+            CbGenreItems.Insert(0, new Genre() { Id = 999, Name = "Genre" });
+
             DataContext = this;
+
             InitializeComponent();
 
-            // Sort combobox
-            var SortItems = new MovieBar.CbItem[]
-            {
-                new MovieBar.CbItem() { Id=1, Name="A-Ö" },
-                new MovieBar.CbItem() { Id=1, Name="Ö-A" },
-                new MovieBar.CbItem() { Id=1, Name="År" },
-                new MovieBar.CbItem() { Id=1, Name="Rating" } 
-            };
-            CbSortItems.AddRange(SortItems);
-            
-            //MessageBox.Show("MovieList " + MovieList.Count.ToString());
-            //MessageBox.Show("Movies " + State.Movies.Count.ToString());
-            
-            // Genre combobox
-            //var genres = API.GetGenres().OrderBy(g => g.Name);
-            //cMovieBar.cbGenre.ItemsSource = genres;
             
         }
-
+        
         private void MovieItem_OnClick(object sender, RoutedEventArgs e)
         {
             var mc = (MovieCard) e.OriginalSource;
-            var datacxtx = mc.DataContext;
-            var datasource = (Movie) datacxtx;
-            MessageBox.Show(datasource.Title);
+            var datactx = mc.DataContext;
+            State.MoviePick = (Movie) datactx;
+            if (API.RegisterSale(State.User, State.MoviePick))
+            {
+                MessageBox.Show("All is well and you can download your movie now.", "Sale Succeeded!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("An error happened while buying the movie, please try again at a later time.", "Sale Failed!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
+        // MovieBar
         private void CMovieBar_OnComboBoxSelectionChanged(object sender, MovieBar.ComboBoxSelectionChangedEventArgs e)
         {
             if (e.SortItem is MovieBar.CbItem)
             {
                 var selected = (MovieBar.CbItem)e.SortItem;
-
-                //var sortList = MovieList.OrderBy(a => a.Title.ToLower()).ToList();
-                //State.Movies.Sort((a,b) => a.Title.ToLower().CompareTo(b.Title.ToLower()));
-
-                icMovieList.ItemsSource = MovieList;
-
                 
+                switch (selected.Id)
+                {
+                    case 0: // A - Ö
+                        {
+                            MovieList = new ObservableCollection<Movie>(MovieList.OrderBy(a => a.Title));
+                            break;
+                        }
+                    case 1: // Ö - A
+                        {
+                            MovieList = new ObservableCollection<Movie>(MovieList.OrderByDescending(a => a.Title));
+                            break;
+                        }
+                    case 2: // Årtal
+                        {
+                            MovieList = new ObservableCollection<Movie>(MovieList.OrderByDescending(a => a.Year));
+                            break;
+                        }
+                    case 3: // Högst betyg
+                        {
+                            MovieList = new ObservableCollection<Movie>(MovieList.OrderByDescending(a => a.Rating));
+                            break;
+                        }
+                    case 4: // Lägst betyg
+                        {
+                            MovieList = new ObservableCollection<Movie>(MovieList.OrderBy(a => a.Rating));
+                            break;
+                        }
+                }
             }
             if (e.GenreItem is Genre)
             {
                 var selected = (Genre)e.GenreItem;
-                State.Movies = API.GetMoviesByGenre(selected.Name);
-                //icMovieList.ItemsSource = State.Movies;
+
+                // återställ MovieList om Genre väljs
+                if (selected.Name == "Genre")
+                    MovieList = new ObservableCollection<Movie>(State.Movies);
+                else
+                    MovieList = new ObservableCollection<Movie>(API.GetMoviesByGenre(selected));
+                
+            }
+        }
+        
+        private void cMovieBar_SearchBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var search = cMovieBar.SearchText;
+                
+                if (!String.IsNullOrWhiteSpace(search))
+                {
+                    MovieList = new ObservableCollection<Movie>(API.GetMovieByTitle(search));
+                }
+                else if (MovieList.Count != State.Movies.Count)
+                {
+                    MovieList = new ObservableCollection<Movie>(State.Movies);
+                }
             }
         }
     }

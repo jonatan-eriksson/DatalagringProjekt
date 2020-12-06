@@ -23,11 +23,14 @@
             x:Name="cMovieBar" 
             Margin="10 6" 
             DataContext="{Binding}" 
-            ComboBoxSelectionChanged="CMovieBar_OnComboBoxSelectionChanged"/>
+            ComboBoxSelectionChanged="CMovieBar_OnComboBoxSelectionChanged"
+            SearchBoxKeyDown="cMovieBar_SearchBoxKeyDown"
+            />
 
         <!--Grid-->
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl Name="icMovieList" DataContext="{Binding}" ItemsSource="{Binding MovieList, Mode=OneWay}" HorizontalAlignment="Center">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center">
+            <ItemsControl Name="icMovieList" ItemsSource="{Binding MovieList, Mode=OneWay}">
+                <!--{Binding MovieList, Mode=OneWay}-->
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -41,7 +44,7 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             -->
-                        
+
                         <Border Margin="9" Padding="0 0 0 6" Background="Gray" CornerRadius="6">
                             <controls:MovieCard 
                                 x:Name="MovieItem" 

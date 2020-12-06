@@ -22,13 +22,14 @@ namespace Store
     /// </summary>
     public partial class MainWindow : MetroWindow //Window
     {
-
         public MainWindow()
         {
+            State.User = API.LoginCustomer("demo", "demo");
+            State.Movies = API.GetMovieSlice(0, 100);
+            State.UserMovies = API.GetCustomerMovies(State.User);
             InitializeComponent();
-          
         }
-        
+
         private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
         {
             this.HamburgerMenuControl.Content = e.InvokedItem;
