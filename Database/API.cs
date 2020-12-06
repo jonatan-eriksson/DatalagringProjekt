@@ -184,14 +184,20 @@ namespace Database
         }
 
         //Update customer firstname and lastname
-        public static int UpdateCustomer(Customer Customer)
+        public static bool UpdateCustomer(Customer Customer)
         {
-            using var ctx = new Context();
-                        
+            try
+            {
+                using var ctx = new Context();
+
                 ctx.Update(Customer);
 
-                return ctx.SaveChanges();
-                        
+                return ctx.SaveChanges() == 1;
+            } 
+            catch (DbUpdateException)
+            {
+                return false;
+            }
         } 
              
     }
