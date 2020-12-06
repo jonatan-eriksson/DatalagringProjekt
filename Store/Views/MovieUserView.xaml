@@ -5,18 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Store.Views"
              xmlns:controls="clr-namespace:Store.Controls"
+             xmlns:s="clr-namespace:Store"
              mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <Label Grid.Row="0" HorizontalAlignment="Center" FontSize="30">Mina Filmer</Label>
-        
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl Name="icMovieList">
+
+        <!--Header-->
+        <Label Grid.Row="0" HorizontalAlignment="Center" FontSize="24">Mina Filmer</Label>
+
+        <!--MovieBar-->
+        <controls:MovieBar 
+            Grid.Row="1" 
+            x:Name="cMovieBar" 
+            Margin="10 6" 
+            DataContext="{Binding}" 
+            ComboBoxSelectionChanged="CMovieBar_OnComboBoxSelectionChanged"
+            />
+
+        <!--Grid-->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Center">
+            <ItemsControl Name="icMovieList" ItemsSource="{Binding UserMovieList, Mode=OneWay}">
+                <!--{Binding MovieList, Mode=OneWay}-->
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -25,14 +40,19 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="200">
-                            <!--
+                        <!--
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             -->
-                            <controls:MovieCard Margin="8" Width="100" DataContext="{Binding}"/>
-                        </Grid>
+
+                        <Border Margin="9" Padding="0 0 0 6" Background="Gray" CornerRadius="6">
+                            <controls:MovieCard 
+                                x:Name="MovieItem" 
+                                Foreground="White" 
+                                Width="122" Height="210" 
+                                DataContext="{Binding}"/>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
