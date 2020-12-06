@@ -22,7 +22,7 @@
             DisplayMemberPath="Name"
             SelectionChanged="Genre_OnSelectionChanged"
             Width="125"
-            mah:TextBoxHelper.Watermark="Genre"
+            SelectedIndex="0"
             />
 
         <TextBox 
@@ -30,8 +30,8 @@
                  Name="SearchBox"
                  Margin="10 0"
                  Padding="5"
-                 Text="{Binding Text}"
                  Width="200"
+                 KeyDown="SearchBox_KeyDown"
                  mah:TextBoxHelper.Watermark="Sök.."
                  mah:TextBoxHelper.ClearTextButton="True"/>
         

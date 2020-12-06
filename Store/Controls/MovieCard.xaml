@@ -21,16 +21,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Text="{Binding Title, StringFormat={}}"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Text="{Binding Title}"/>
             
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Rating: "/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Rating, StringFormat={}}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Year}"/>
+            
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Rating: "/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Rating}"/>
         </Grid>
     </Grid>
 </UserControl>

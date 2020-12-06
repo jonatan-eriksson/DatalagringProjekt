@@ -23,11 +23,22 @@ namespace Store.Controls
         {
             InitializeComponent();
         }
-        // Searchbox
 
+        // Searchbox
+        public string SearchText
+        {
+            get { return SearchBox.Text; }
+        }
+
+        public event KeyEventHandler SearchBoxKeyDown;
+        private void SearchBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            SearchBoxKeyDown(this, e);
+        }
 
         // Combobox
         public event ComboBoxSelectionChangedEventHandler ComboBoxSelectionChanged;
+        public delegate void ComboBoxSelectionChangedEventHandler(object sender, ComboBoxSelectionChangedEventArgs e);
 
         private void Genre_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -52,9 +63,6 @@ namespace Store.Controls
             public Object GenreItem { get; set; }
             public Object SortItem { get; set; }
         }
-
-        public delegate void ComboBoxSelectionChangedEventHandler(object sender, ComboBoxSelectionChangedEventArgs e);
-
 
         public class CbItem
         {
