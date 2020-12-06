@@ -19,6 +19,7 @@ namespace Database
             return ctx.Movies
                 .Include(m => m.Genres)
                 .Where(m => m.Title.ToLower().Contains(title.ToLower()))
+                .OrderBy(m => m.Title)
                 .ToList();
         }
 
@@ -29,18 +30,18 @@ namespace Database
                 .Include(m => m.Genres)
                 .Skip(start)
                 .Take(amount)
+                .OrderBy(m => m.Title)
                 .ToList();
         }
 
-        public static List<Movie> GetMoviesByGenre(string genre)
+        public static List<Movie> GetMoviesByGenre(Genre genre)
         {
-            var genreObj = new Genre {Name = genre};
-
             using var ctx = new Context();
             
             var movies = ctx.Movies
                 .Include(m => m.Genres)
-                .Where(m => m.Genres.Any(g => g.Name.ToLower() == genre.ToLower()))
+                .Where(m => m.Genres.Any(g => g.Name.ToLower() == genre.Name.ToLower()))
+                .OrderBy(m => m.Title)
                 .ToList();
 
             return movies;
@@ -54,7 +55,24 @@ namespace Database
                 .Include(m => m.Movie)
                 .Where(s => s.Customer == customer)
                 .Select(s => s.Movie)
+                .OrderBy(m => m.Title)
                 .ToList();
+        }
+
+        public static List<Movie> GetCustomerMoviesByGenre(Customer customer, Genre genre)
+        {
+            using var ctx = new Context();
+
+            var movies = ctx.Sales
+                .Include(s => s.Movie)
+                .Include(m => m.Movie.Genres)
+                .Where(s => s.Customer == customer)
+                .Where(m => m.Movie.Genres.Any(g => g.Name.ToLower() == genre.Name.ToLower()))
+                .Select(s => s.Movie)
+                .OrderBy(m => m.Title)
+                .ToList();
+
+            return movies;
         }
 
         public static List<Genre> GetGenres()
