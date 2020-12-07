@@ -26,16 +26,19 @@ namespace Store.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-
-        private void Button_OnClick(object sender, RoutedEventArgs e)
-        {
 
             if (State.User != null)
             {
                 State.User.FirstName = FörNamn.Text;
                 State.User.LastName = EfterNamn.Text;
+                if (API.UpdateCustomer(State.User))
+                {
+                    MessageBox.Show("Lyckad uppdatering.");
+                }
+                else
+                {
+                    MessageBox.Show("Det gick inte att spara de nya uppgifterna.");
+                }
                 
             }
 
