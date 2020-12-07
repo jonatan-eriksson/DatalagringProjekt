@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -24,10 +21,12 @@ namespace Store
     {
         public MainWindow()
         {
-            State.User = API.LoginCustomer("demo", "demo");
-            State.Movies = API.GetMovieSlice(0, 100);
             State.UserMovies = API.GetCustomerMovies(State.User);
+            State.Movies = API.GetMovieSlice(0, 50);
+
             InitializeComponent();
+            
+            this.HamburgerMenuControl.IsPaneOpen = true;
         }
 
         private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
