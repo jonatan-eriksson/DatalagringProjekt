@@ -27,24 +27,23 @@ namespace Store
             NameBox.Focus();
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void LoginButton_OnClick(object sender, RoutedEventArgs e)
         {
-            State.User = API.GetCustomerByUsername(NameBox.Text);
+            if (!string.IsNullOrWhiteSpace(NameBox.Text) && !string.IsNullOrWhiteSpace(PasswordBox.Password)) { 
+                State.User = API.LoginCustomer(NameBox.Text, PasswordBox.Password);
 
-            if (State.User != null)
-            {
-                var mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
-            else
-            {
-                NameBox.Text = "";
+
+                if (State.User != null)
+                {
+                    var mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    //NameBox.Text = "";
+                    PasswordBox.Password = "";
+                }
             }
         }
 
