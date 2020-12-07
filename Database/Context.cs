@@ -15,6 +15,8 @@ namespace Database
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
+                //.LogTo(s => System.Diagnostics.Debug.WriteLine(s))
+                .UseLazyLoadingProxies()
                 .UseSqlServer(
                     @"Server=.\SQLExpress;" +
                     @"Database=MovieStore;" +

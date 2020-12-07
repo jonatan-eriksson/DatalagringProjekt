@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -17,9 +16,7 @@ namespace Database
         {
             using var ctx = new Context();
             return ctx.Movies
-                .Include(m => m.Genres)
                 .Where(m => m.Title.ToLower().Contains(title.ToLower()))
-                .OrderBy(m => m.Title)
                 .ToList();
         }
 
@@ -27,10 +24,8 @@ namespace Database
         {
             using var ctx = new Context();
             return ctx.Movies
-                .Include(m => m.Genres)
                 .Skip(start)
                 .Take(amount)
-                .OrderBy(m => m.Title)
                 .ToList();
         }
 
@@ -39,9 +34,7 @@ namespace Database
             using var ctx = new Context();
             
             var movies = ctx.Movies
-                .Include(m => m.Genres)
                 .Where(m => m.Genres.Any(g => g.Name.ToLower() == genre.Name.ToLower()))
-                .OrderBy(m => m.Title)
                 .ToList();
 
             return movies;
@@ -51,11 +44,10 @@ namespace Database
         {
             
             using var ctx = new Context();
+
             return ctx.Sales
-                .Include(m => m.Movie)
                 .Where(s => s.Customer == customer)
                 .Select(s => s.Movie)
-                .OrderBy(m => m.Title)
                 .ToList();
         }
 
@@ -64,12 +56,9 @@ namespace Database
             using var ctx = new Context();
 
             var movies = ctx.Sales
-                .Include(s => s.Movie)
-                .Include(m => m.Movie.Genres)
                 .Where(s => s.Customer == customer)
                 .Where(m => m.Movie.Genres.Any(g => g.Name.ToLower() == genre.Name.ToLower()))
                 .Select(s => s.Movie)
-                .OrderBy(m => m.Title)
                 .ToList();
 
             return movies;

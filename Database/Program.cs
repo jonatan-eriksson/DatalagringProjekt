@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net;
+using System.Linq;
 
 namespace Database
 {
@@ -19,13 +19,14 @@ namespace Database
                 ctx.RemoveRange(ctx.Genres);
          
                 // Movie data
-                var fileData = File.ReadAllLines(@"../../../SeedData/MovieGenre.csv", System.Text.Encoding.ASCII);
+                //var fileData = File.ReadAllLines(@"../../../SeedData/MovieGenre.csv", System.Text.Encoding.ASCII);
+                var fileData = File.ReadLines(@"../../../SeedData/MovieGenre.csv", System.Text.Encoding.ASCII).Take(100).ToArray();
                 var movies = new List<Movie>();
                 var genres = new Dictionary<string, Genre>();
 
-                for(int i = 101; i< 200; i++)
+                foreach(var line in fileData)
                 {
-                    var item = fileData[i].Split(',');
+                    var item = line.Split(','); //fileData[i].Split(',');
 
                     // Title
                     string title = item[2].Split('(')[0];
