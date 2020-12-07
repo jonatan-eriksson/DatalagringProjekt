@@ -127,7 +127,10 @@ namespace Store.Views
             if (e.Key == Key.Enter)
             {
                 var search = cMovieBar.SearchText;
-                
+
+                cMovieBar.cbGenre.SelectedIndex = 0;
+                cMovieBar.cbSort.SelectedIndex = 0;
+
                 if (!String.IsNullOrWhiteSpace(search))
                 {
                     MovieList = new ObservableCollection<Movie>(API.GetMovieByTitle(search));
