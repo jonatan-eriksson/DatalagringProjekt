@@ -14,10 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Database;
 using Store.Controls;
-using Store.ViewModels;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.Specialized;
 
 namespace Store.Views
 {
@@ -40,6 +38,11 @@ namespace Store.Views
 
         public MovieGridView()
         {
+
+            DataContext = this;
+
+            InitializeComponent();
+
             MovieList = new ObservableCollection<Movie>(State.Movies);
    
             CbSortItems = new List<MovieBar.CbItem>() {
@@ -52,11 +55,6 @@ namespace Store.Views
 
             CbGenreItems = new List<Genre>(API.GetGenres().OrderBy(g => g.Name));
             CbGenreItems.Insert(0, new Genre() { Id = 999, Name = "Genre" });
-
-            DataContext = this;
-
-            InitializeComponent();
-
             
         }
         

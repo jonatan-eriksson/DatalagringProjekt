@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -39,6 +38,9 @@ namespace Store.Views
 
         public MovieUserView()
         {
+            DataContext = this;
+            InitializeComponent();
+
             UserMovieList = new ObservableCollection<Movie>(State.UserMovies);
 
             CbSortItems = new List<MovieBar.CbItem>() {
@@ -52,8 +54,6 @@ namespace Store.Views
             CbGenreItems = new List<Genre>(API.GetGenres().OrderBy(g => g.Name));
             CbGenreItems.Insert(0, new Genre() { Id = 999, Name = "Genre" });
 
-            DataContext = this;
-            InitializeComponent();
             cMovieBar.SearchBox.Visibility = Visibility.Hidden;
         }
 
@@ -109,8 +109,12 @@ namespace Store.Views
         {
             if (State.MoviePick != null)
             {
-                State.UserMovies = API.GetCustomerMovies(State.User);
+                State.UserMovies = API.GetCustomerMovies(State.User).OrderBy(m => m.Title).ToList();
                 UserMovieList = new ObservableCollection<Movie>(State.UserMovies);
+                
+                // Reset moviebar
+                cMovieBar.cbGenre.SelectedIndex = 0;
+                cMovieBar.cbSort.SelectedIndex = 0;
 
                 State.MoviePick = null;
             }
